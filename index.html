@@ -3,128 +3,385 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <script
-      defer
-      src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"
-    ></script>
+    <!-- ICONO DELA PAGINA -->
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="32x32"
+      href="/assets/logos/logo_cvt.svg"
+    />
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css"
+    />
+    <link rel="stylesheet" href="styles.css" />
     <title>Club Vela Tucumán</title>
   </head>
   <body>
-    <nav
-      class="relative bg-blue-400 after:pointer-events-none after:absolute after:inset-x-0 after:bottom-0 after:h-px after:bg-white/10"
-    >
-      <div class="mx-auto max-w-7xl px-2 sm:px-6 lg:px-8">
-        <div class="relative flex h-16 items-center justify-between">
-          <div class="absolute inset-y-0 left-0 flex items-center sm:hidden">
-            <!-- Mobile menu button-->
-            <button
-              type="button"
-              command="--toggle"
-              commandfor="mobile-menu"
-              class="relative inline-flex items-center justify-center rounded-md p-2 text-gray-400 hover:bg-white/5 hover:text-white focus:outline-2 focus:-outline-offset-1 focus:outline-indigo-500"
-            >
-              <span class="absolute -inset-0.5"></span>
-              <span class="sr-only">Open main menu</span>
-              <svg
-                viewBox="0 0 24 24"
-                fill="none"
-                stroke="currentColor"
-                stroke-width="1.5"
-                data-slot="icon"
-                aria-hidden="true"
-                class="size-6 in-aria-expanded:hidden"
-              >
-                <path
-                  d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5"
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                />
-              </svg>
-              <svg
-                viewBox="0 0 24 24"
-                fill="none"
-                stroke="currentColor"
-                stroke-width="1.5"
-                data-slot="icon"
-                aria-hidden="true"
-                class="size-6 not-in-aria-expanded:hidden"
-              >
-                <path
-                  d="M6 18 18 6M6 6l12 12"
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                />
-              </svg>
-            </button>
+    <div class="seccion-hero w-full h-screen">
+      <!-- Navbar -->
+      <nav
+        id="navbar"
+        class="fixed top-0 left-0 w-full z-20 transition-colors duration-300 text-white ease-in-out"
+      >
+        <div
+          class="container mx-auto flex justify-between items-center py-4 px-6"
+        >
+          <!-- Logo para mobile (izquierda) -->
+          <div class="md:hidden">
+            <img
+              src="/assets/logos/logo_cvt.svg"
+              alt="Club Vela Tucumán"
+              class="h-12 w-auto"
+            />
           </div>
-          <div
-            class="flex flex-1 items-center justify-center sm:items-stretch sm:justify-start"
-          >
-            <div class="flex shrink-0 items-center">
-              <img
-                src="./assets/logo-principal/logo_cvt.png"
-                alt="Your Company"
-                class="h-12 w-auto"
-              />
-            </div>
-            <div class="hidden sm:ml-6 sm:block">
-              <div class="flex space-x-4">
-                <a
-                  href="#"
-                  aria-current="page"
-                  class="rounded-md bg-gray-950/50 px-3 py-2 text-sm font-medium text-white"
-                  >Dashboard</a
-                >
-                <a
-                  href="#"
-                  class="rounded-md px-3 py-2 text-sm font-medium text-gray-300 hover:bg-white/5 hover:text-white"
-                  >Team</a
-                >
-                <a
-                  href="#"
-                  class="rounded-md px-3 py-2 text-sm font-medium text-gray-300 hover:bg-white/5 hover:text-white"
-                  >Projects</a
-                >
-                <a
-                  href="#"
-                  class="rounded-md px-3 py-2 text-sm font-medium text-gray-300 hover:bg-white/5 hover:text-white"
-                  >Calendar</a
-                >
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
 
-      <el-disclosure id="mobile-menu" hidden class="block sm:hidden">
-        <div class="space-y-1 px-2 pt-2 pb-3">
-          <a
-            href="#"
-            aria-current="page"
-            class="block rounded-md bg-gray-950/50 px-3 py-2 text-base font-medium text-white"
-            >Dashboard</a
+          <!-- Links desktop -->
+          <ul class="hidden md:flex space-x-8 font-medium text-lg">
+            <li>
+              <a href="./index.html" class="hover:text-yellow-400">Inicio</a>
+            </li>
+            <li>
+              <a
+                href="./Pages/Campeonatos/index.html"
+                class="hover:text-yellow-400"
+                >Campeonatos</a
+              >
+            </li>
+            <!-- Dropdown Flotas -->
+            <li class="relative">
+              <button
+                data-dropdown-toggle="menu-flotas"
+                class="flex items-center space-x-1 hover:text-yellow-400 cursor-pointer"
+              >
+                <span>Flotas</span>
+                <svg
+                  id="arrow-flotas"
+                  class="w-4 h-4 transition-transform duration-300"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="M19 9l-7 7-7-7"
+                  />
+                </svg>
+              </button>
+              <!-- Dropdown -->
+              <ul
+                id="menu-flotas"
+                class="hidden absolute left-0 mt-2 w-48 bg-white text-gray-800 shadow-lg rounded opacity-0 transform scale-95 transition-all duration-300 ease-out"
+              >
+                <li class="flex items-center px-4 py-2 hover:bg-gray-100">
+                  <img
+                    src="/assets/logos/logo_pampero.svg"
+                    alt="Pampero"
+                    class="h-5 mr-2"
+                  />
+                  <a href="#pampero">Pampero</a>
+                </li>
+                <li class="flex items-center px-4 py-2 hover:bg-gray-100">
+                  <img
+                    src="/assets/logos/logo_micro.svg"
+                    alt="Micro"
+                    class="h-5 mr-2"
+                  />
+                  <a href="#micro">Micro</a>
+                </li>
+                <li class="flex items-center px-4 py-2 hover:bg-gray-100">
+                  <img
+                    src="/assets/logos/logo_ilca.svg"
+                    alt="ILCA"
+                    class="h-3 mr-2"
+                  />
+                  <a href="#ilca">ILCA</a>
+                </li>
+                <li class="flex items-center px-4 py-2 hover:bg-gray-100">
+                  <img
+                    src="/assets/logos/logo_optimist.svg"
+                    alt="Optimist"
+                    class="h-5 mr-2"
+                  />
+                  <a href="#optimist">Optimist</a>
+                </li>
+              </ul>
+            </li>
+            <!-- Dropdown Escuela -->
+            <li class="relative">
+              <button
+                data-dropdown-toggle="menu-escuela"
+                class="flex items-center space-x-1 hover:text-yellow-400 transition cursor-pointer"
+              >
+                <span>Escuelas</span>
+                <svg
+                  id="arrow-escuela"
+                  class="w-4 h-4 transition-transform duration-300"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="M19 9l-7 7-7-7"
+                  />
+                </svg>
+              </button>
+              <!-- Dropdown -->
+              <ul
+                id="menu-escuela"
+                class="hidden absolute left-0 mt-2 w-56 bg-white text-gray-800 shadow-lg rounded opacity-0 transform scale-95 transition-all duration-300 ease-out"
+              >
+                <li class="px-4 py-2 hover:bg-gray-100">
+                  <a href="#escuela-optimist">Escuela de Optimist</a>
+                </li>
+                <li class="px-4 py-2 hover:bg-gray-100">
+                  <a href="#escuela-ilca">Escuela de ILCA</a>
+                </li>
+              </ul>
+            </li>
+            <li>
+              <a
+                href="./Pages/AcercaDe/index.html"
+                class="hover:text-yellow-400"
+                >Acerca De</a
+              >
+            </li>
+            <li>
+              <a
+                href="./Pages/Contacto/index.html"
+                class="hover:text-yellow-400"
+                >Contacto</a
+              >
+            </li>
+          </ul>
+
+          <!-- Logo desktop (centro) -->
+          <div class="hidden md:block">
+            <img
+              src="/assets/logos/logo_cvt.svg"
+              alt="Club Vela Tucumán"
+              class="h-16 w-auto"
+            />
+          </div>
+
+          <!-- Botón hamburguesa -->
+          <button
+            id="menu-btn"
+            class="md:hidden focus:outline-none text-gray-800"
           >
-          <a
-            href="#"
-            class="block rounded-md px-3 py-2 text-base font-medium text-gray-300 hover:bg-white/5 hover:text-white"
-            >Team</a
-          >
-          <a
-            href="#"
-            class="block rounded-md px-3 py-2 text-base font-medium text-gray-300 hover:bg-white/5 hover:text-white"
-            >Projects</a
-          >
-          <a
-            href="#"
-            class="block rounded-md px-3 py-2 text-base font-medium text-gray-300 hover:bg-white/5 hover:text-white"
-            >Calendar</a
-          >
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              class="h-8 w-8"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke="currentColor"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+                d="M4 6h16M4 12h16M4 18h16"
+              />
+            </svg>
+          </button>
         </div>
-      </el-disclosure>
-    </nav>
+
+        <!-- Menú móvil -->
+        <div
+          id="menu"
+          class="md:hidden bg-white shadow-md max-h-0 overflow-hidden transition-all duration-300 ease-in-out"
+        >
+          <ul class="flex flex-col space-y-4 px-6 py-4 text-gray-800">
+            <li><a href="./index.html" class="block py-2">Inicio</a></li>
+            <li>
+              <a href="./Pages/Campeonatos/index.html" class="block py-2"
+                >Campeonatos</a
+              >
+            </li>
+            <li>
+              <div class="mobile-dropdown">
+                <button
+                  class="mobile-dropdown-toggle flex items-center justify-between w-full py-2 cursor-pointer"
+                >
+                  <span>Flotas</span>
+                  <svg
+                    class="mobile-dropdown-arrow w-4 h-4 transition-transform duration-300"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      stroke-width="2"
+                      d="M19 9l-7 7-7-7"
+                    />
+                  </svg>
+                </button>
+                <ul
+                  class="mobile-dropdown-menu max-h-0 overflow-hidden transition-all duration-300 ease-in-out ml-4 mt-0"
+                >
+                  <li class="flex items-center space-x-2 py-2">
+                    <img
+                      src="/assets/logos/logo_pampero.svg"
+                      class="h-5"
+                      alt="Pampero"
+                    />
+                    <a href="#pampero">Pampero</a>
+                  </li>
+                  <li class="flex items-center space-x-2 py-2">
+                    <img
+                      src="/assets/logos/logo_micro.svg"
+                      class="h-5"
+                      alt="Micro"
+                    />
+                    <a href="#micro">Micro</a>
+                  </li>
+                  <li class="flex items-center space-x-2 py-2">
+                    <img
+                      src="/assets/logos/logo_ilca.svg"
+                      class="h-5"
+                      alt="ILCA"
+                    />
+                    <a href="#ilca">ILCA</a>
+                  </li>
+                  <li class="flex items-center space-x-2 py-2">
+                    <img
+                      src="/assets/logos/logo_optimist.svg"
+                      class="h-5"
+                      alt="Optimist"
+                    />
+                    <a href="#optimist">Optimist</a>
+                  </li>
+                </ul>
+              </div>
+            </li>
+            <li>
+              <div class="mobile-dropdown">
+                <button
+                  class="mobile-dropdown-toggle flex items-center justify-between w-full py-2 cursor-pointer"
+                >
+                  <span>Escuelas</span>
+                  <svg
+                    class="mobile-dropdown-arrow w-4 h-4 transition-transform duration-300"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      stroke-width="2"
+                      d="M19 9l-7 7-7-7"
+                    />
+                  </svg>
+                </button>
+                <ul
+                  class="mobile-dropdown-menu max-h-0 overflow-hidden transition-all duration-300 ease-in-out ml-4 mt-0"
+                >
+                  <li class="py-2">
+                    <a href="#escuela-optimist">Escuela de Optimist</a>
+                  </li>
+                  <li class="py-2">
+                    <a href="#escuela-ilca">Escuela de ILCA</a>
+                  </li>
+                </ul>
+              </div>
+            </li>
+            <li>
+              <a href="./Pages/AcercaDe/index.html" class="block py-2"
+                >Acerca De</a
+              >
+            </li>
+            <li>
+              <a href="./Pages/Contacto/index.html" class="block py-2"
+                >Contacto</a
+              >
+            </li>
+          </ul>
+        </div>
+      </nav>
+
+      <div class="swiper mySwiper h-full">
+        <div class="swiper-wrapper">
+          <!-- Slide 1 -->
+          <div class="swiper-slide relative">
+            <img
+              src="/assets/seccion-hero/imagencvt1.jpg"
+              alt=""
+              class="w-full h-full object-cover absolute inset-0"
+            />
+            <div
+              class="absolute inset-0 bg-gradient-to-r from-blue-800 to-sky-600 opacity-60"
+            ></div>
+            <div
+              class="relative z-10 flex flex-col items-center justify-center h-full text-center text-white px-4"
+            >
+              <h2 class="text-4xl md:text-6xl font-bold mb-4">Lorem Ipsum 1</h2>
+              <p class="text-lg md:text-2xl max-w-2xl">Reemplazar con texto.</p>
+            </div>
+          </div>
+          <!-- Slide 2 -->
+          <div class="swiper-slide relative">
+            <img
+              src="/assets/seccion-hero/imagencvt2.jpg"
+              alt=""
+              class="w-full h-full object-cover absolute inset-0"
+            />
+            <div
+              class="absolute inset-0 bg-gradient-to-r from-blue-800 to-sky-600 opacity-60"
+            ></div>
+            <div
+              class="relative z-10 flex flex-col items-center justify-center h-full text-center text-white px-4"
+            >
+              <h2 class="text-4xl md:text-6xl font-bold mb-4">Lorem Ipsum 2</h2>
+              <p class="text-lg md:text-2xl max-w-2xl">Reemplazar con texto.</p>
+            </div>
+          </div>
+          <!-- Slide 3 -->
+          <div class="swiper-slide relative">
+            <img
+              src="/assets/seccion-hero/imagencvt3.jpg"
+              alt=""
+              class="w-full h-full object-cover absolute inset-0"
+            />
+            <div
+              class="absolute inset-0 bg-gradient-to-r from-blue-800 to-sky-600 opacity-60"
+            ></div>
+            <div
+              class="relative z-10 flex flex-col items-center justify-center h-full text-center text-white px-4"
+            >
+              <h2 class="text-4xl md:text-6xl font-bold mb-4">Lorem Ipsum 3</h2>
+              <p class="text-lg md:text-2xl max-w-2xl">Reemplazar con texto.</p>
+            </div>
+          </div>
+        </div>
+        <!-- Botones y paginación -->
+        <div class="swiper-button-next"></div>
+        <div class="swiper-button-prev"></div>
+        <div class="swiper-pagination"></div>
+      </div>
+    </div>
+
+    <main>
+      <div class="seccion-campeonatos w-full h-screen">
+        <h2 class="text-4xl md:text-6xl font-bold mb-4">Campeonatos</h2>
+        <p class="text-lg md:text-2xl max-w-2xl">Reemplazar con texto.</p>
+      </div>
+    </main>
+
+    <!-- Scripts -->
+    <script
+      src="https://cdn.jsdelivr.net/npm/@tailwindplus/elements@1"
+      type="module"
+    ></script>
+    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+    <script src="app.js"></script>
   </body>
-  <script
-    src="https://cdn.jsdelivr.net/npm/@tailwindplus/elements@1"
-    type="module"
-  ></script>
 </html>
