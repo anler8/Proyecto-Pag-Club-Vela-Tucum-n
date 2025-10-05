@@ -20,26 +20,6 @@ var swiper = new Swiper(".mySwiper", {
 });
 
 // =======================
-// Navbar: fondo al hacer scroll (solo desktop)
-// =======================
-window.addEventListener("scroll", () => {
-  const navbar = document.getElementById("navbar");
-  const menuBtn = document.getElementById("menu-btn");
-
-  // Solo aplicar efectos de scroll en desktop
-  if (window.innerWidth >= 768) {
-    if (window.scrollY > 50) {
-      navbar.classList.add("bg-white", "shadow-md", "text-black");
-      navbar.classList.remove("text-white");
-    } else {
-      navbar.classList.remove("bg-white", "shadow-md", "text-black");
-      navbar.classList.add("text-white");
-    }
-  }
-  // En móvil, mantener siempre el estilo blanco (se maneja en initializeNavbar)
-});
-
-// =======================
 // Toggle menú móvil con animación suave
 // =======================
 const menuBtn = document.getElementById("menu-btn");
@@ -48,7 +28,7 @@ let menuOpen = false;
 
 menuBtn.addEventListener("click", () => {
   if (!menuOpen) {
-    menu.style.maxHeight = menu.scrollHeight + "px";
+    menu.style.maxHeight = "1000px"; // Altura suficientemente grande
     menuOpen = true;
   } else {
     menu.style.maxHeight = "0px";
@@ -143,7 +123,7 @@ const mobileDropdowns = document.querySelectorAll(".mobile-dropdown");
 
 mobileDropdowns.forEach((dropdown) => {
   const toggle = dropdown.querySelector(".mobile-dropdown-toggle");
-  const menu = dropdown.querySelector(".mobile-dropdown-menu");
+  const dropdownMenu = dropdown.querySelector(".mobile-dropdown-menu");
   const arrow = dropdown.querySelector(".mobile-dropdown-arrow");
   let isOpen = false;
 
@@ -152,40 +132,78 @@ mobileDropdowns.forEach((dropdown) => {
 
     if (!isOpen) {
       // Abrir
-      menu.style.maxHeight = menu.scrollHeight + "px";
+      dropdownMenu.style.maxHeight = dropdownMenu.scrollHeight + "px";
       arrow.classList.add("rotate-180");
       isOpen = true;
     } else {
       // Cerrar
-      menu.style.maxHeight = "0px";
+      dropdownMenu.style.maxHeight = "0px";
       arrow.classList.remove("rotate-180");
       isOpen = false;
     }
   });
 });
 
-// Inicializar y mantener navbar según el tamaño de pantalla
+// =======================
+// Navbar: fondo al hacer scroll (solo para home)
+// =======================
+window.addEventListener("scroll", () => {
+  const navbar = document.getElementById("navbar");
+  const menuBtn = document.getElementById("menu-btn");
+  const currentPage = navbar.getAttribute("data-page");
+
+  // Solo aplicar efectos de scroll en la home y en desktop
+  if (currentPage === "home" && window.innerWidth >= 768) {
+    if (window.scrollY > 50) {
+      navbar.classList.add("bg-white", "shadow-md", "text-black");
+      navbar.classList.remove("text-white");
+      menuBtn.classList.add("text-gray-800");
+      menuBtn.classList.remove("text-white");
+    } else {
+      // Navbar transparente arriba del todo
+      navbar.classList.remove("bg-white", "shadow-md", "text-black");
+      navbar.classList.add("text-white");
+      menuBtn.classList.remove("text-gray-800");
+      menuBtn.classList.add("text-white");
+    }
+  }
+});
+
+// =======================
+// Inicializar navbar según página y tamaño
+// =======================
 function initializeNavbar() {
   const navbar = document.getElementById("navbar");
   const menuBtn = document.getElementById("menu-btn");
+  const currentPage = navbar.getAttribute("data-page");
 
-  if (window.innerWidth < 768) {
-    // En móvil, navbar siempre blanco
+  if (currentPage === "home") {
+    if (window.innerWidth < 768) {
+      // En móvil, navbar siempre blanca
+      navbar.classList.add("bg-white", "shadow-md", "text-black");
+      navbar.classList.remove("text-white");
+      menuBtn.classList.add("text-gray-800");
+      menuBtn.classList.remove("text-white");
+    } else {
+      // En desktop, depende del scroll actual
+      if (window.scrollY > 50) {
+        navbar.classList.add("bg-white", "shadow-md", "text-black");
+        navbar.classList.remove("text-white");
+        menuBtn.classList.add("text-gray-800");
+        menuBtn.classList.remove("text-white");
+      } else {
+        navbar.classList.remove("bg-white", "shadow-md", "text-black");
+        navbar.classList.add("text-white");
+        menuBtn.classList.remove("text-gray-800");
+        menuBtn.classList.add("text-white");
+      }
+    }
+  } else {
+    // En todas las demás páginas, navbar siempre blanca
     navbar.classList.add("bg-white", "shadow-md", "text-black");
     navbar.classList.remove("text-white");
     menuBtn.classList.add("text-gray-800");
     menuBtn.classList.remove("text-white");
-  } else {
-    // En desktop, resetear según scroll
-    if (window.scrollY > 50) {
-      navbar.classList.add("bg-white", "shadow-md", "text-black");
-      navbar.classList.remove("text-white");
-    } else {
-      navbar.classList.remove("bg-white", "shadow-md", "text-black");
-      navbar.classList.add("text-white");
-    }
-    // En desktop, el botón hamburguesa no se ve, pero por si acaso
-    menuBtn.classList.remove("text-gray-800");
   }
 }
 
