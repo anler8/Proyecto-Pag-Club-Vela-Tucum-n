@@ -1,0 +1,422 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="32x32"
+      href="/assets/logos/logo_cvt.svg"
+    />
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css"
+    />
+    <link rel="stylesheet" href="styles.css" />
+    <title>Club Vela Tucumán</title>
+  </head>
+<body>
+    <nav
+  id="navbar"
+  class="sticky top-0 left-0 w-full z-20 transition-colors duration-300 ease-in-out"
+  data-page="error-404"
+>
+  <div class="container mx-auto flex justify-between items-center py-4 px-6">
+    <!-- Logo para mobile (izquierda) -->
+    <div class="md:hidden">
+      <img
+        src="/assets/logos/logo_cvt.svg"
+        alt="Club Vela Tucumán"
+        class="h-12 w-auto"
+      />
+    </div>
+
+    <!-- Links desktop -->
+    <ul class="hidden md:flex space-x-8 font-medium text-lg">
+      <li>
+        <a href="./index.html" class="hover:text-yellow-400">Inicio</a>
+      </li>
+      <li>
+        <a href="./pages/Campeonatos/index.html" class="hover:text-yellow-400"
+          >Campeonatos</a
+        >
+      </li>
+      <!-- Dropdown Flotas -->
+      <li class="relative">
+        <button
+          data-dropdown-toggle="menu-flotas"
+          class="flex items-center space-x-1 hover:text-yellow-400 cursor-pointer"
+        >
+          <span>Flotas</span>
+          <svg
+            id="arrow-flotas"
+            class="w-4 h-4 transition-transform duration-300"
+            fill="none"
+            stroke="currentColor"
+            viewBox="0 0 24 24"
+          >
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="2"
+              d="M19 9l-7 7-7-7"
+            />
+          </svg>
+        </button>
+        <!-- Dropdown -->
+        <ul
+          id="menu-flotas"
+          class="hidden absolute left-0 mt-2 w-48 bg-white text-gray-800 shadow-lg rounded opacity-0 transform scale-95 transition-all duration-300 ease-out"
+        >
+          <li class="flex items-center px-4 py-2 hover:bg-gray-100">
+            <img
+              src="/assets/logos/logo_pampero.svg"
+              alt="Pampero"
+              class="h-5 mr-2"
+            />
+            <a href="#pampero">Pampero</a>
+          </li>
+          <li class="flex items-center px-4 py-2 hover:bg-gray-100">
+            <img
+              src="/assets/logos/logo_micro.svg"
+              alt="Micro"
+              class="h-5 mr-2"
+            />
+            <a href="#micro">Micro</a>
+          </li>
+          <li class="flex items-center px-4 py-2 hover:bg-gray-100">
+            <img
+              src="/assets/logos/logo_ilca.svg"
+              alt="ILCA"
+              class="h-3 mr-2"
+            />
+            <a href="#ilca">ILCA</a>
+          </li>
+          <li class="flex items-center px-4 py-2 hover:bg-gray-100">
+            <img
+              src="/assets/logos/logo_optimist.svg"
+              alt="Optimist"
+              class="h-5 mr-2"
+            />
+            <a href="#optimist">Optimist</a>
+          </li>
+        </ul>
+      </li>
+      <!-- Dropdown Escuela -->
+      <li class="relative">
+        <button
+          data-dropdown-toggle="menu-escuela"
+          class="flex items-center space-x-1 hover:text-yellow-400 transition cursor-pointer"
+        >
+          <span>Escuelas</span>
+          <svg
+            id="arrow-escuela"
+            class="w-4 h-4 transition-transform duration-300"
+            fill="none"
+            stroke="currentColor"
+            viewBox="0 0 24 24"
+          >
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="2"
+              d="M19 9l-7 7-7-7"
+            />
+          </svg>
+        </button>
+        <!-- Dropdown -->
+        <ul
+          id="menu-escuela"
+          class="hidden absolute left-0 mt-2 w-56 bg-white text-gray-800 shadow-lg rounded opacity-0 transform scale-95 transition-all duration-300 ease-out"
+        >
+          <li class="px-4 py-2 hover:bg-gray-100">
+            <a href="#escuela-optimist">Escuela de Optimist</a>
+          </li>
+          <li class="px-4 py-2 hover:bg-gray-100">
+            <a href="#escuela-ilca">Escuela de ILCA</a>
+          </li>
+        </ul>
+      </li>
+    </ul>
+
+    <!-- Logo desktop (centro) -->
+    <div class="hidden md:block">
+      <img
+        src="/assets/logos/logo_cvt.svg"
+        alt="Club Vela Tucumán"
+        class="h-16 w-auto"
+      />
+    </div>
+
+    <!-- Botón hamburguesa -->
+    <button id="menu-btn" class="md:hidden focus:outline-none text-gray-800">
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        class="h-8 w-8"
+        fill="none"
+        viewBox="0 0 24 24"
+        stroke="currentColor"
+      >
+        <path
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          stroke-width="2"
+          d="M4 6h16M4 12h16M4 18h16"
+        />
+      </svg>
+    </button>
+  </div>
+
+  <!-- Menú móvil -->
+  <div
+    id="menu"
+    class="md:hidden bg-white shadow-md max-h-0 overflow-hidden transition-all duration-300 ease-in-out"
+  >
+    <ul class="flex flex-col space-y-4 px-6 py-4 text-gray-800">
+      <li><a href="./index.html" class="block py-2">Inicio</a></li>
+      <li>
+        <a href="./Pages/Campeonatos/index.html" class="block py-2"
+          >Campeonatos</a
+        >
+      </li>
+      <li>
+        <div class="mobile-dropdown">
+          <button
+            class="mobile-dropdown-toggle flex items-center justify-between w-full py-2 cursor-pointer"
+          >
+            <span>Flotas</span>
+            <svg
+              class="mobile-dropdown-arrow w-4 h-4 transition-transform duration-300"
+              fill="none"
+              stroke="currentColor"
+              viewBox="0 0 24 24"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+                d="M19 9l-7 7-7-7"
+              />
+            </svg>
+          </button>
+          <ul
+            class="mobile-dropdown-menu max-h-0 overflow-hidden transition-all duration-300 ease-in-out ml-4 mt-0"
+          >
+            <li class="flex items-center space-x-2 py-2">
+              <img
+                src="/assets/logos/logo_pampero.svg"
+                class="h-5"
+                alt="Pampero"
+              />
+              <a href="#pampero">Pampero</a>
+            </li>
+            <li class="flex items-center space-x-2 py-2">
+              <img src="/assets/logos/logo_micro.svg" class="h-5" alt="Micro" />
+              <a href="#micro">Micro</a>
+            </li>
+            <li class="flex items-center space-x-2 py-2">
+              <img src="/assets/logos/logo_ilca.svg" class="h-5" alt="ILCA" />
+              <a href="#ilca">ILCA</a>
+            </li>
+            <li class="flex items-center space-x-2 py-2">
+              <img
+                src="/assets/logos/logo_optimist.svg"
+                class="h-5"
+                alt="Optimist"
+              />
+              <a href="#optimist">Optimist</a>
+            </li>
+          </ul>
+        </div>
+      </li>
+      <li>
+        <div class="mobile-dropdown">
+          <button
+            class="mobile-dropdown-toggle flex items-center justify-between w-full py-2 cursor-pointer"
+          >
+            <span>Escuelas</span>
+            <svg
+              class="mobile-dropdown-arrow w-4 h-4 transition-transform duration-300"
+              fill="none"
+              stroke="currentColor"
+              viewBox="0 0 24 24"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+                d="M19 9l-7 7-7-7"
+              />
+            </svg>
+          </button>
+          <ul
+            class="mobile-dropdown-menu max-h-0 overflow-hidden transition-all duration-300 ease-in-out ml-4 mt-0"
+          >
+            <li class="py-2">
+              <a href="#escuela-optimist">Escuela de Optimist</a>
+            </li>
+            <li class="py-2">
+              <a href="#escuela-ilca">Escuela de ILCA</a>
+            </li>
+          </ul>
+        </div>
+      </li>
+    </ul>
+  </div>
+</nav>
+<!-- Mensaje de Error -->
+<main class="flex-grow flex items-center justify-center px-6 bg-gradient-to-b from-sky-100 via-white to-sky-50">
+  <div class="max-w-5xl w-full mx-auto grid grid-cols-1 md:grid-cols-2 gap-8 items-center py-12">
+    <!-- 404Texto -->
+    <section class="space-y-6">
+      
+
+      <h1 class="text-4xl sm:text-5xl font-extrabold tracking-tight text-slate-900">
+        ERROR 404
+      </h1>
+
+      <p class="text-slate-600 text-lg leading-relaxed">
+        La dirección a la que intentaste acceder no existe o fue movida.  
+        Puedes volver al inicio, revisar la URL o reportarlo al equipo.
+      </p>
+
+      <div class="flex flex-wrap gap-3">
+        <a href="/" class="inline-flex items-center gap-2 rounded-lg px-4 py-2 bg-blue-600 text-white font-semibold shadow hover:bg-blue-700 hover:shadow-lg transition">
+          Volver al inicio
+        </a>
+      </div>
+
+    </section>
+
+
+    <!-- Imagen 404 -->
+    <aside class="flex items-center justify-center">
+      <img 
+        src="../error 404/assets/4043.png" 
+        class="w-full max-w-md" 
+      />
+    </aside>
+  </div>
+</main>
+<!--  -->
+<footer class="bg-gray-900 text-gray-100 pt-11 pb-5 text-sm leading-6">
+  <div class="container mx-auto px-4">
+    <div class="grid grid-cols-1 md:grid-cols-12 gap-6">
+      <!-- Sección de Acerca -->
+      <div class="md:col-span-6">
+        <h6
+          class="text-white text-base uppercase mt-1 mb-4 tracking-wider font-semibold"
+        >
+          Acerca
+        </h6>
+        <p class="text-justify text-sm">
+          En <strong>Club Vela Tucumán</strong> trabajamos para promover el
+          desarrollo de la náutica en la provincia, formando nuevos navegantes y
+          fortaleciendo el espíritu deportivo. Nuestro compromiso es crear un
+          espacio inclusivo donde niños, jóvenes y adultos puedan aprender,
+          competir y disfrutar de la navegación a vela, fomentando valores de
+          compañerismo, respeto por la naturaleza y excelencia deportiva.
+        </p>
+      </div>
+
+      <!-- Sección de contacto -->
+      <div class="md:col-span-3 mx-auto">
+        <h6
+          class="text-white text-base uppercase mt-1 mb-4 tracking-wider font-semibold"
+        >
+          Direccción
+        </h6>
+        <ul class="space-y-2 text-gray-100">
+          <li>Ruta Pcial N°312, El Cadillal</li>
+          <li>Lunes a Viernes: 10hs a 19hs</li>
+          <li>
+            <a
+              href="mailto:antolerma@gmail.com"
+              class="text-gray-100 hover:text-blue-500 hover:no-underline transition-colors"
+              >antolerma@gmail.com</a
+            >
+          </li>
+          <li>+543815393055</li>
+        </ul>
+      </div>
+
+      <!-- Sección de enlaces -->
+      <div class="md:col-span-3 mx-auto">
+        <h6
+          class="text-white text-base uppercase mt-1 mb-4 tracking-wider font-semibold"
+        >
+          Enlaces
+        </h6>
+        <ul class="space-y-2">
+          <li>
+            <a
+              href="http://scanfcode.com/about/"
+              class="text-gray-100 hover:text-blue-500 hover:no-underline transition-colors"
+              >Nosotros</a
+            >
+          </li>
+          <li>
+            <a
+              href="http://scanfcode.com/contact/"
+              class="text-gray-100 hover:text-blue-500 hover:no-underline transition-colors"
+              >Contactanos</a
+            >
+          </li>
+          <li>
+            <a
+              href="http://scanfcode.com/contribute-at-scanfcode/"
+              class="text-gray-100 hover:text-blue-500 hover:no-underline transition-colors"
+              >Contribuir</a
+            >
+          </li>
+          <li>
+            <a
+              href="http://scanfcode.com/privacy-policy/"
+              class="text-gray-100 hover:text-blue-500 hover:no-underline transition-colors"
+              >Politicas de Privacidad</a
+            >
+          </li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- Divider -->
+    <hr class="border-gray-500 opacity-50 my-5" />
+
+    <!-- Derechos y Redes -->
+    <div class="grid grid-cols-1 md:grid-cols-12 gap-4 items-center">
+      <!-- Derechos -->
+      <div class="md:col-span-8 text-center md:text-left">
+        <p class="m-0 text-sm">
+          Todos los derechos reservados. © CLUB VELA TUCUMÁN
+        </p>
+      </div>
+
+      <!-- Iconos Redes -->
+      <div class="md:col-span-4 text-center md:text-right">
+        <ul class="flex justify-center md:justify-end space-x-2">
+          <li>
+            <a
+              href="#"
+              class="inline-block w-10 h-10 leading-12 text-center rounded-full bg-gray-700 text-gray-100 hover:text-white hover:bg-blue-600 transition-all duration-200"
+            >
+              <i class="bi bi-facebook text-2xl"></i>
+            </a>
+          </li>
+          <li>
+            <a
+              href="#"
+              class="inline-block w-10 h-10 leading-12 text-center rounded-full bg-gray-700 text-gray-100 hover:text-white hover:bg-pink-500 transition-all duration-200"
+            >
+              <i class="bi bi-instagram text-2xl"></i>
+            </a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</footer>
+</body>
+</html>
