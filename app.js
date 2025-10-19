@@ -1,100 +1,87 @@
 // =======================
-// Swiper config
+// Inicialización de componentes
 // =======================
-var swiper = new Swiper(".mySwiper", {
-  spaceBetween: 30,
-  centeredSlides: true,
-  effect: "fade",
-  autoplay: {
-    delay: 4000,
-    disableOnInteraction: false,
-  },
-  pagination: {
-    el: ".swiper-pagination",
-    clickable: true,
-  },
-  navigation: {
-    nextEl: ".swiper-button-next",
-    prevEl: ".swiper-button-prev",
-  },
-});
+function inicializarComponentes() {
+  // Los componentes se inicializan desde sus respectivos archivos
+  // centro-actividades.js maneja el centro de actividades dinámico
+}
 
 // =======================
-// Toggle menú móvil con animación suave
+// Alternar menú móvil con animación suave
 // =======================
-const menuBtn = document.getElementById("menu-btn");
+const botonMenu = document.getElementById("menu-btn");
 const menu = document.getElementById("menu");
-let menuOpen = false;
+let menuAbierto = false;
 
-menuBtn.addEventListener("click", () => {
-  if (!menuOpen) {
+botonMenu.addEventListener("click", () => {
+  if (!menuAbierto) {
     menu.style.maxHeight = "1000px"; // Altura suficientemente grande
-    menuOpen = true;
+    menuAbierto = true;
   } else {
     menu.style.maxHeight = "0px";
-    menuOpen = false;
+    menuAbierto = false;
   }
 });
 
 // Cerrar menú hamburguesa al hacer clic en un enlace
-const menuLinks = document.querySelectorAll("#menu a");
-menuLinks.forEach((link) => {
-  link.addEventListener("click", () => {
+const enlacesMenu = document.querySelectorAll("#menu a");
+enlacesMenu.forEach((enlace) => {
+  enlace.addEventListener("click", () => {
     menu.style.maxHeight = "0px";
-    menuOpen = false;
+    menuAbierto = false;
   });
 });
 
 // =======================
-// Dropdown con animaciones suaves (desktop)
+// Desplegable con animaciones suaves (escritorio)
 // =======================
-const dropdownToggles = document.querySelectorAll("[data-dropdown-toggle]");
+const togglesDesplegable = document.querySelectorAll("[data-dropdown-toggle]");
 
-dropdownToggles.forEach((toggle) => {
-  const menuId = toggle.getAttribute("data-dropdown-toggle");
-  const dropdownMenu = document.getElementById(menuId);
-  const arrow = toggle.querySelector("svg");
-  let isOpen = false;
+togglesDesplegable.forEach((toggle) => {
+  const idMenu = toggle.getAttribute("data-dropdown-toggle");
+  const menuDesplegable = document.getElementById(idMenu);
+  const flecha = toggle.querySelector("svg");
+  let estaAbierto = false;
 
   toggle.addEventListener("click", (e) => {
     e.stopPropagation();
 
-    // Cerrar todos los demás dropdowns
+    // Cerrar todos los demás desplegables
     document.querySelectorAll("[id^='menu-']").forEach((menu) => {
-      if (menu !== dropdownMenu && !menu.classList.contains("hidden")) {
+      if (menu !== menuDesplegable && !menu.classList.contains("hidden")) {
         menu.classList.add("hidden");
         menu.classList.remove("opacity-100", "scale-100");
         menu.classList.add("opacity-0", "scale-95");
 
-        const otherToggle = document.querySelector(
+        const otroToggle = document.querySelector(
           `[data-dropdown-toggle="${menu.id}"]`
         );
-        if (otherToggle) {
-          const otherArrow = otherToggle.querySelector("svg");
-          if (otherArrow) otherArrow.classList.remove("rotate-180");
+        if (otroToggle) {
+          const otraFlecha = otroToggle.querySelector("svg");
+          if (otraFlecha) otraFlecha.classList.remove("rotate-180");
         }
       }
     });
 
     // Alternar este menú
-    if (isOpen) {
+    if (estaAbierto) {
       // Cerrar
-      dropdownMenu.classList.remove("opacity-100", "scale-100");
-      dropdownMenu.classList.add("opacity-0", "scale-95");
+      menuDesplegable.classList.remove("opacity-100", "scale-100");
+      menuDesplegable.classList.add("opacity-0", "scale-95");
       setTimeout(() => {
-        dropdownMenu.classList.add("hidden");
+        menuDesplegable.classList.add("hidden");
       }, 300);
-      if (arrow) arrow.classList.remove("rotate-180");
-      isOpen = false;
+      if (flecha) flecha.classList.remove("rotate-180");
+      estaAbierto = false;
     } else {
       // Abrir
-      dropdownMenu.classList.remove("hidden");
+      menuDesplegable.classList.remove("hidden");
       setTimeout(() => {
-        dropdownMenu.classList.remove("opacity-0", "scale-95");
-        dropdownMenu.classList.add("opacity-100", "scale-100");
+        menuDesplegable.classList.remove("opacity-0", "scale-95");
+        menuDesplegable.classList.add("opacity-100", "scale-100");
       }, 10);
-      if (arrow) arrow.classList.add("rotate-180");
-      isOpen = true;
+      if (flecha) flecha.classList.add("rotate-180");
+      estaAbierto = true;
     }
   });
 
@@ -102,113 +89,119 @@ dropdownToggles.forEach((toggle) => {
   document.addEventListener("click", (e) => {
     if (
       !toggle.contains(e.target) &&
-      !dropdownMenu.contains(e.target) &&
-      isOpen
+      !menuDesplegable.contains(e.target) &&
+      estaAbierto
     ) {
-      dropdownMenu.classList.remove("opacity-100", "scale-100");
-      dropdownMenu.classList.add("opacity-0", "scale-95");
+      menuDesplegable.classList.remove("opacity-100", "scale-100");
+      menuDesplegable.classList.add("opacity-0", "scale-95");
       setTimeout(() => {
-        dropdownMenu.classList.add("hidden");
+        menuDesplegable.classList.add("hidden");
       }, 300);
-      if (arrow) arrow.classList.remove("rotate-180");
-      isOpen = false;
+      if (flecha) flecha.classList.remove("rotate-180");
+      estaAbierto = false;
     }
   });
 });
 
 // =======================
-// Dropdown móvil con animaciones suaves
+// Desplegable móvil con animaciones suaves
 // =======================
-const mobileDropdowns = document.querySelectorAll(".mobile-dropdown");
+const desplegablesMoviles = document.querySelectorAll(".mobile-dropdown");
 
-mobileDropdowns.forEach((dropdown) => {
-  const toggle = dropdown.querySelector(".mobile-dropdown-toggle");
-  const dropdownMenu = dropdown.querySelector(".mobile-dropdown-menu");
-  const arrow = dropdown.querySelector(".mobile-dropdown-arrow");
-  let isOpen = false;
+desplegablesMoviles.forEach((desplegable) => {
+  const toggle = desplegable.querySelector(".mobile-dropdown-toggle");
+  const menuDesplegable = desplegable.querySelector(".mobile-dropdown-menu");
+  const flecha = desplegable.querySelector(".mobile-dropdown-arrow");
+  let estaAbierto = false;
 
   toggle.addEventListener("click", (e) => {
     e.preventDefault();
 
-    if (!isOpen) {
+    if (!estaAbierto) {
       // Abrir
-      dropdownMenu.style.maxHeight = dropdownMenu.scrollHeight + "px";
-      arrow.classList.add("rotate-180");
-      isOpen = true;
+      menuDesplegable.style.maxHeight = menuDesplegable.scrollHeight + "px";
+      flecha.classList.add("rotate-180");
+      estaAbierto = true;
     } else {
       // Cerrar
-      dropdownMenu.style.maxHeight = "0px";
-      arrow.classList.remove("rotate-180");
-      isOpen = false;
+      menuDesplegable.style.maxHeight = "0px";
+      flecha.classList.remove("rotate-180");
+      estaAbierto = false;
     }
   });
 });
 
 // =======================
-// Navbar: fondo al hacer scroll (solo para home)
+// Barra de navegación: fondo al hacer scroll (solo para home)
 // =======================
 window.addEventListener("scroll", () => {
-  const navbar = document.getElementById("navbar");
-  const menuBtn = document.getElementById("menu-btn");
-  const currentPage = navbar.getAttribute("data-page");
+  const barraNavegacion = document.getElementById("navbar");
+  const botonMenu = document.getElementById("menu-btn");
+  const paginaActual = barraNavegacion.getAttribute("data-page");
 
-  // Solo aplicar efectos de scroll en la home y en desktop
-  if (currentPage === "home" && window.innerWidth >= 768) {
+  // Solo aplicar efectos de scroll en la home y en escritorio
+  if (paginaActual === "home" && window.innerWidth >= 768) {
     if (window.scrollY > 50) {
-      navbar.classList.add("bg-white", "shadow-md", "text-black");
-      navbar.classList.remove("text-white");
-      menuBtn.classList.add("text-gray-800");
-      menuBtn.classList.remove("text-white");
+      barraNavegacion.classList.add("bg-white", "shadow-md", "text-black");
+      barraNavegacion.classList.remove("text-white");
+      botonMenu.classList.add("text-gray-800");
+      botonMenu.classList.remove("text-white");
     } else {
-      // Navbar transparente arriba del todo
-      navbar.classList.remove("bg-white", "shadow-md", "text-black");
-      navbar.classList.add("text-white");
-      menuBtn.classList.remove("text-gray-800");
-      menuBtn.classList.add("text-white");
+      // Barra de navegación transparente arriba del todo
+      barraNavegacion.classList.remove("bg-white", "shadow-md", "text-black");
+      barraNavegacion.classList.add("text-white");
+      botonMenu.classList.remove("text-gray-800");
+      botonMenu.classList.add("text-white");
     }
   }
 });
 
 // =======================
-// Inicializar navbar según página y tamaño
+// Inicializar barra de navegación según página y tamaño
 // =======================
-function initializeNavbar() {
-  const navbar = document.getElementById("navbar");
-  const menuBtn = document.getElementById("menu-btn");
-  const currentPage = navbar.getAttribute("data-page");
+function inicializarBarraNavegacion() {
+  const barraNavegacion = document.getElementById("navbar");
+  const botonMenu = document.getElementById("menu-btn");
+  const paginaActual = barraNavegacion.getAttribute("data-page");
 
-  if (currentPage === "home") {
+  if (paginaActual === "home") {
     if (window.innerWidth < 768) {
-      // En móvil, navbar siempre blanca
-      navbar.classList.add("bg-white", "shadow-md", "text-black");
-      navbar.classList.remove("text-white");
-      menuBtn.classList.add("text-gray-800");
-      menuBtn.classList.remove("text-white");
+      // En móvil, barra de navegación siempre blanca
+      barraNavegacion.classList.add("bg-white", "shadow-md", "text-black");
+      barraNavegacion.classList.remove("text-white");
+      botonMenu.classList.add("text-gray-800");
+      botonMenu.classList.remove("text-white");
     } else {
-      // En desktop, depende del scroll actual
+      // En escritorio, depende del scroll actual
       if (window.scrollY > 50) {
-        navbar.classList.add("bg-white", "shadow-md", "text-black");
-        navbar.classList.remove("text-white");
-        menuBtn.classList.add("text-gray-800");
-        menuBtn.classList.remove("text-white");
+        barraNavegacion.classList.add("bg-white", "shadow-md", "text-black");
+        barraNavegacion.classList.remove("text-white");
+        botonMenu.classList.add("text-gray-800");
+        botonMenu.classList.remove("text-white");
       } else {
-        navbar.classList.remove("bg-white", "shadow-md", "text-black");
-        navbar.classList.add("text-white");
-        menuBtn.classList.remove("text-gray-800");
-        menuBtn.classList.add("text-white");
+        barraNavegacion.classList.remove("bg-white", "shadow-md", "text-black");
+        barraNavegacion.classList.add("text-white");
+        botonMenu.classList.remove("text-gray-800");
+        botonMenu.classList.add("text-white");
       }
     }
   } else {
-    // En todas las demás páginas, navbar siempre blanca
-    navbar.classList.add("bg-white", "shadow-md", "text-black");
-    navbar.classList.remove("text-white");
-    menuBtn.classList.add("text-gray-800");
-    menuBtn.classList.remove("text-white");
+    // En todas las demás páginas, barra de navegación siempre blanca
+    barraNavegacion.classList.add("bg-white", "shadow-md", "text-black");
+    barraNavegacion.classList.remove("text-white");
+    botonMenu.classList.add("text-gray-800");
+    botonMenu.classList.remove("text-white");
   }
 }
 
 // Ejecutar al cargar la página
-initializeNavbar();
+inicializarBarraNavegacion();
 
 // Ejecutar al cambiar tamaño de ventana
-window.addEventListener("resize", initializeNavbar);
+window.addEventListener("resize", inicializarBarraNavegacion);
+
+// Inicializar componentes cuando el DOM esté listo
+document.addEventListener("DOMContentLoaded", function () {
+  // Los componentes se inicializan desde sus respectivos archivos
+  inicializarComponentes();
+});
