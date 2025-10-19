@@ -1,20 +1,833 @@
-.swiper {
+/* ======================= */
+/* Estilos para Hero Section */
+/* ======================= */
+.seccion-hero {
+  position: relative;
+  overflow: hidden;
+}
+
+.hero-background {
+  position: absolute;
+  top: 0;
+  left: 0;
   width: 100%;
   height: 100%;
+  z-index: 1;
 }
 
-.swiper-slide {
-  text-align: center;
-  font-size: 18px;
-  background: #444;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
-.swiper-slide img {
-  display: block;
+.hero-background img,
+.hero-background video {
   width: 100%;
   height: 100%;
   object-fit: cover;
+  object-position: center;
+}
+
+.hero-background video {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 1;
+}
+
+.hero-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(
+    135deg,
+    rgba(30, 58, 138, 0.7) 0%,
+    rgba(14, 116, 144, 0.7) 100%
+  );
+  z-index: 2;
+}
+
+.hero-content {
+  position: relative;
+  z-index: 10;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  text-align: center;
+  color: white;
+  padding: 0 1rem;
+}
+
+.hero-titulo {
+  font-size: clamp(2.5rem, 8vw, 4.5rem);
+  font-weight: 700;
+  line-height: 1.1;
+  margin-bottom: 1.5rem;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+  animation: fadeInUp 1s ease-out;
+}
+
+.hero-eslogan {
+  font-size: clamp(1.125rem, 4vw, 1.875rem);
+  font-weight: 300;
+  line-height: 1.4;
+  margin-bottom: 2rem;
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
+  animation: fadeInUp 1s ease-out 0.3s both;
+}
+
+.hero-cta {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1rem 2.5rem;
+  font-size: 1.125rem;
+  font-weight: 600;
+  color: white;
+  background: var(--gradiente-dorado); /* Dorado del club */
+  clip-path: polygon(8% 0%, 100% 0%, 92% 100%, 0% 100%);
+  box-shadow: 0 25px 50px -12px rgba(245, 158, 11, 0.4); /* Sombra dorada */
+  transition: all 0.3s ease;
+  overflow: hidden;
+  animation: fadeInUp 1s ease-out 0.6s both;
+}
+
+.hero-cta:hover {
+  transform: translateY(-2px) scale(1.05);
+  box-shadow: 0 35px 60px -12px rgba(245, 158, 11, 0.6); /* Sombra dorada intensificada */
+}
+
+.hero-cta:active {
+  transform: translateY(0) scale(1.02);
+}
+
+.hero-cta span {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.hero-cta svg {
+  width: 1.5rem;
+  height: 1.5rem;
+  transition: transform 0.3s ease;
+}
+
+.hero-cta:hover svg {
+  transform: translateX(4px);
+}
+
+/* Animaciones */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .hero-content {
+    padding: 0 1rem;
+  }
+
+  .hero-cta {
+    padding: 0.875rem 2rem;
+    font-size: 1rem;
+  }
+}
+
+/* ======================= */
+/* Estilos para Grilla de Eventos */
+/* ======================= */
+.evento-card {
+  animation: fadeInUp 0.6s ease-out;
+  animation-fill-mode: both;
+}
+
+.evento-card:nth-child(1) {
+  animation-delay: 0.1s;
+}
+.evento-card:nth-child(2) {
+  animation-delay: 0.2s;
+}
+.evento-card:nth-child(3) {
+  animation-delay: 0.3s;
+}
+.evento-card:nth-child(4) {
+  animation-delay: 0.4s;
+}
+.evento-card:nth-child(5) {
+  animation-delay: 0.5s;
+}
+.evento-card:nth-child(6) {
+  animation-delay: 0.6s;
+}
+.evento-card:nth-child(7) {
+  animation-delay: 0.7s;
+}
+.evento-card:nth-child(8) {
+  animation-delay: 0.8s;
+}
+
+/* Efecto de línea de texto truncada */
+.line-clamp-2 {
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+/* Hover effects mejorados */
+.evento-card:hover .bg-gradient-to-r {
+  background-size: 200% 200%;
+  animation: gradientShift 2s ease infinite;
+}
+
+@keyframes gradientShift {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+/* Responsive grid adjustments */
+@media (max-width: 768px) {
+  .evento-card {
+    margin-bottom: 1.5rem;
+  }
+}
+
+@media (min-width: 1024px) {
+  .evento-card:hover {
+    transform: translateY(-12px) rotate(1deg);
+  }
+}
+
+/* Estilos para el botón "Ver todos los eventos" */
+.evento-card button {
+  position: relative;
+  overflow: hidden;
+}
+
+.evento-card button::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(255, 255, 255, 0.2),
+    transparent
+  );
+  transition: left 0.5s;
+}
+
+.evento-card button:hover::before {
+  left: 100%;
+}
+
+/* ======================= */
+/* Paleta de Colores del Club Vela Tucumán */
+/* ======================= */
+
+:root {
+  /* Colores principales del club */
+  --cvt-azul-marino: #1e3a8a; /* Azul marino principal */
+  --cvt-azul-claro: #3b82f6; /* Azul claro para acentos */
+  --cvt-azul-cielo: #60a5fa; /* Azul cielo para fondos suaves */
+  --cvt-azul-oscuro: #1e40af; /* Azul oscuro para contrastes */
+
+  /* Colores complementarios */
+  --cvt-blanco: #ffffff; /* Blanco puro */
+  --cvt-gris-claro: #f8fafc; /* Gris muy claro para fondos */
+  --cvt-gris-medio: #64748b; /* Gris medio para textos */
+  --cvt-gris-oscuro: #334155; /* Gris oscuro para títulos */
+
+  /* Colores de acento */
+  --cvt-dorado: #f59e0b; /* Dorado para CTAs importantes */
+  --cvt-verde-mar: #059669; /* Verde mar para elementos especiales */
+  --cvt-rojo-naval: #dc2626; /* Rojo naval para alertas */
+
+  /* Gradientes del club */
+  --gradiente-principal: linear-gradient(
+    135deg,
+    var(--cvt-azul-marino) 0%,
+    var(--cvt-azul-oscuro) 100%
+  );
+  --gradiente-claro: linear-gradient(
+    135deg,
+    var(--cvt-azul-claro) 0%,
+    var(--cvt-azul-cielo) 100%
+  );
+  --gradiente-dorado: linear-gradient(
+    135deg,
+    var(--cvt-dorado) 0%,
+    #fbbf24 100%
+  );
+}
+
+/* ======================= */
+/* Estilos para Centro de Actividades Dinámico */
+/* ======================= */
+
+/* Countdown Timer */
+.countdown-item {
+  text-align: center;
+}
+
+.countdown-number {
+  background: var(--gradiente-principal); /* Azul marino del club */
+  color: white;
+  font-size: 2rem;
+  font-weight: 700;
+  width: 80px;
+  height: 80px;
+  border-radius: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 8px;
+  box-shadow: 0 10px 25px rgba(30, 58, 138, 0.3); /* Sombra azul marino */
+  border: 2px solid rgba(255, 255, 255, 0.1);
+}
+
+.countdown-label {
+  color: var(--cvt-azul-cielo); /* Azul cielo del club */
+  font-size: 0.875rem;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+/* Glassmorphism cards */
+.bg-white\/10 {
+  background: rgba(255, 255, 255, 0.1);
+}
+
+.backdrop-blur-sm {
+  backdrop-filter: blur(8px);
+}
+
+/* Animaciones para números en vivo */
+#active-members,
+#boats-water,
+#events-week {
+  transition: all 0.3s ease;
+  animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+  0%,
+  100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.7;
+  }
+}
+
+/* Galería de fotos */
+#photo-gallery img {
+  border-radius: 12px;
+  transition: transform 0.3s ease;
+  cursor: pointer;
+}
+
+#photo-gallery img:hover {
+  transform: scale(1.05);
+}
+
+/* Próximos eventos */
+.evento-mini {
+  background: #bfdbfe;
+  border-radius: 12px;
+  padding: 12px;
+  border-left: 3px solid #3b82f6;
+  transition: all 0.3s ease;
+}
+
+.evento-mini:hover {
+  background: rgba(255, 255, 255, 0.1);
+  transform: translateX(4px);
+}
+
+.evento-mini h4 {
+  font-size: 0.875rem;
+  font-weight: 600;
+  margin-bottom: 4px;
+}
+
+.evento-mini p {
+  font-size: 0.75rem;
+}
+
+/* Responsive countdown */
+@media (max-width: 768px) {
+  .countdown-number {
+    width: 60px;
+    height: 60px;
+    font-size: 1.5rem;
+  }
+
+  .countdown-label {
+    font-size: 0.75rem;
+  }
+}
+
+/* Gradiente animado para el título */
+.bg-gradient-to-r {
+  background-size: 200% 200%;
+  animation: gradientShift 3s ease infinite;
+}
+
+@keyframes gradientShift {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+/* ======================= */
+/* Botón de Google Maps con estilo hero CTA */
+/* ======================= */
+.maps-cta {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.75rem 2rem;
+  font-size: 1.125rem;
+  font-weight: 600;
+  color: white;
+  background: var(--gradiente-dorado); /* Dorado del club */
+  clip-path: polygon(8% 0%, 100% 0%, 92% 100%, 0% 100%);
+  box-shadow: 0 25px 50px -12px rgba(245, 158, 11, 0.4); /* Sombra dorada */
+  transition: all 0.3s ease;
+  overflow: hidden;
+}
+
+.maps-cta:hover {
+  transform: translateY(-2px) scale(1.05);
+  box-shadow: 0 35px 60px -12px rgba(245, 158, 11, 0.6); /* Sombra dorada intensificada */
+}
+
+.maps-cta:active {
+  transform: translateY(0) scale(1.02);
+}
+
+.maps-cta span {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.maps-cta svg {
+  width: 1.25rem;
+  height: 1.25rem;
+  transition: transform 0.3s ease;
+}
+
+.maps-cta:hover svg {
+  transform: translateX(4px);
+}
+
+/* ======================= */
+/* Estilos para Escuelas de Vela */
+/* ======================= */
+
+.escuela-card {
+  animation: fadeInUp 0.6s ease-out;
+  animation-fill-mode: both;
+}
+
+.escuela-card:nth-child(1) {
+  animation-delay: 0.1s;
+}
+.escuela-card:nth-child(2) {
+  animation-delay: 0.2s;
+}
+.escuela-card:nth-child(3) {
+  animation-delay: 0.3s;
+}
+
+/* Efectos hover para tarjetas de escuela */
+.escuela-card:hover {
+  transform: translateY(-12px) rotate(1deg);
+}
+
+.escuela-card:hover .bg-gradient-to-r {
+  background-size: 200% 200%;
+  animation: gradientShift 2s ease infinite;
+}
+
+/* Efectos de brillo en botones */
+.escuela-card button {
+  position: relative;
+  overflow: hidden;
+}
+
+.escuela-card button::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(255, 255, 255, 0.2),
+    transparent
+  );
+  transition: left 0.5s;
+}
+
+.escuela-card button:hover::before {
+  left: 100%;
+}
+
+/* CTA Principal con estilo hero */
+.escuela-card .group {
+  background: var(--gradiente-dorado); /* Dorado del club */
+  clip-path: polygon(8% 0%, 100% 0%, 92% 100%, 0% 100%);
+}
+
+/* ======================= */
+/* Botón "Conocé nuestra historia" */
+/* ======================= */
+.sobre-nosotros-cta {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1rem 2.5rem;
+  font-size: 1.125rem;
+  font-weight: 600;
+  color: white;
+  background: var(--gradiente-dorado); /* Dorado del club */
+  clip-path: polygon(8% 0%, 100% 0%, 92% 100%, 0% 100%);
+  box-shadow: 0 25px 50px -12px rgba(245, 158, 11, 0.4);
+  transition: all 0.3s ease;
+  overflow: hidden;
+  animation: fadeInUp 1s ease-out 0.8s both;
+}
+
+.sobre-nosotros-cta:hover {
+  transform: translateY(-2px) scale(1.05);
+  box-shadow: 0 35px 60px -12px rgba(245, 158, 11, 0.6);
+}
+
+.sobre-nosotros-cta:active {
+  transform: translateY(0) scale(1.02);
+}
+
+.sobre-nosotros-cta span {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+/* ======================= */
+/* Diseño Alternado de Escuelas */
+/* ======================= */
+
+/* Contenedor de cada escuela */
+.escuela-alternada {
+  opacity: 0;
+  transform: translateY(30px);
+  animation: fadeInUp 0.8s ease-out forwards;
+}
+
+.escuela-alternada:nth-child(1) {
+  animation-delay: 0.2s;
+}
+
+.escuela-alternada:nth-child(2) {
+  animation-delay: 0.4s;
+}
+
+/* Imágenes con forma de paralelogramo */
+.escuela-imagen-paralelo {
+  position: relative;
+  height: 400px;
+  overflow: hidden;
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+  transition: all 0.4s ease;
+}
+
+.escuela-imagen-paralelo:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 30px 60px rgba(0, 0, 0, 0.2);
+}
+
+/* Paralelogramo apuntando hacia la izquierda (Optimist) */
+.escuela-imagen-izquierda {
+  clip-path: polygon(15% 0%, 100% 0%, 85% 100%, 0% 100%);
+  border-radius: 0 20px 20px 0;
+}
+
+/* Paralelogramo apuntando hacia la derecha (ILCA) */
+.escuela-imagen-derecha {
+  clip-path: polygon(0% 0%, 85% 0%, 100% 100%, 15% 100%);
+  border-radius: 20px 0 0 20px;
+}
+
+/* Imagen dentro del paralelogramo */
+.escuela-imagen {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.4s ease;
+}
+
+.escuela-imagen-paralelo:hover .escuela-imagen {
+  transform: scale(1.05);
+}
+
+/* Contenido de texto */
+.escuela-contenido {
+  padding: 2rem 0;
+}
+
+/* Botones de las escuelas */
+.escuela-boton {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1rem 2rem;
+  font-size: 1rem;
+  font-weight: 600;
+  color: white;
+  border: none;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+  clip-path: polygon(8% 0%, 100% 0%, 92% 100%, 0% 100%);
+}
+
+.escuela-boton:hover {
+  transform: translateY(-2px) scale(1.05);
+  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.2);
+}
+
+.escuela-boton:active {
+  transform: translateY(0) scale(1.02);
+}
+
+/* Botón azul para Optimist */
+.escuela-boton-azul {
+  background: var(--gradiente-claro);
+}
+
+.escuela-boton-azul:hover {
+  box-shadow: 0 15px 35px rgba(59, 130, 246, 0.3);
+}
+
+/* Botón verde para ILCA */
+.escuela-boton-verde {
+  background: linear-gradient(135deg, var(--cvt-verde-mar) 0%, #10b981 100%);
+}
+
+.escuela-boton-verde:hover {
+  box-shadow: 0 15px 35px rgba(5, 150, 105, 0.3);
+}
+
+/* Responsive adjustments */
+@media (max-width: 1024px) {
+  .escuela-imagen-paralelo {
+    height: 300px;
+  }
+
+  .escuela-contenido {
+    padding: 1.5rem 0;
+  }
+}
+
+@media (max-width: 768px) {
+  .escuela-alternada {
+    margin-bottom: 3rem;
+  }
+
+  .escuela-imagen-paralelo {
+    height: 250px;
+    margin-bottom: 2rem;
+  }
+
+  /* En móvil, los paralelogramos se vuelven rectangulares */
+  .escuela-imagen-izquierda,
+  .escuela-imagen-derecha {
+    clip-path: none;
+    border-radius: 15px;
+  }
+
+  .escuela-contenido {
+    padding: 1rem 0;
+    text-align: center;
+  }
+
+  .escuela-boton {
+    width: 100%;
+    padding: 1.25rem 2rem;
+  }
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .escuela-card {
+    margin-bottom: 1.5rem;
+  }
+
+  .escuela-card:hover {
+    transform: translateY(-8px);
+  }
+}
+
+/* Efectos de entrada escalonados */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* ======================= */
+/* Modal de fotos en pantalla completa */
+/* ======================= */
+
+#photo-modal {
+  backdrop-filter: blur(1px);
+  transition: all 0.3s ease;
+}
+
+#photo-modal.show {
+  display: flex !important;
+  animation: modalFadeIn 0.3s ease-out;
+}
+
+/* Blur del contenido de fondo cuando el modal está abierto */
+body.modal-open {
+  overflow: hidden;
+}
+
+body.modal-open > *:not(#photo-modal) {
+  filter: blur(2px);
+  transition: filter 0.3s ease;
+}
+
+#photo-modal .relative {
+  animation: modalSlideIn 0.3s ease-out;
+}
+
+#modal-image {
+  max-height: 90vh;
+  max-width: 90vw;
+  transition: transform 0.3s ease;
+  border-radius: 12px;
+}
+
+/* Overlay de información mejorado */
+#photo-modal .relative > div:last-child {
+  min-height: 120px;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+}
+
+/* Asegurar que el gradiente cubra bien */
+#photo-modal .relative > div:last-child::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(
+    to top,
+    rgba(0, 0, 0, 0.526) 0%,
+    rgba(0, 0, 0, 0.187) 50%,
+    transparent 100%
+  );
+  border-radius: 0 0 12px 12px;
+  pointer-events: none;
+}
+
+#close-modal {
+  background: rgba(0, 0, 0, 0.5);
+  border-radius: 50%;
+  padding: 8px;
+  backdrop-filter: blur(5px);
+  transition: all 0.3s ease;
+}
+
+#close-modal:hover {
+  background: rgba(0, 0, 0, 0.7);
+  transform: scale(1.1);
+}
+
+/* Animaciones del modal */
+@keyframes modalFadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes modalSlideIn {
+  from {
+    opacity: 0;
+    transform: scale(0.8) translateY(-50px);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1) translateY(0);
+  }
+}
+
+/* Responsive para el modal */
+@media (max-width: 768px) {
+  #photo-modal .relative {
+    padding: 1rem;
+    max-width: 95vw;
+  }
+
+  #modal-image {
+    max-height: 80vh;
+    max-width: 95vw;
+  }
+
+  #close-modal {
+    top: 1rem;
+    right: 1rem;
+  }
 }
