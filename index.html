@@ -75,7 +75,7 @@
             </li>
             <li>
               <a
-                href="./pages/Campeonatos/index.html"
+                href="/pages/campeonatos/index.html"
                 class="hover:text-yellow-400"
                 >Campeonatos</a
               >
@@ -224,7 +224,7 @@
           <ul class="flex flex-col space-y-4 px-6 py-4 text-gray-800">
             <li><a href="./index.html" class="block py-2">Inicio</a></li>
             <li>
-              <a href="./Pages/Campeonatos/index.html" class="block py-2"
+              <a href="/pages/campeonatos/index.html" class="block py-2"
                 >Campeonatos</a
               >
             </li>
@@ -480,7 +480,7 @@
             <span
               class="absolute inset-0 bg-gradient-to-r from-yellow-600 to-amber-600 opacity-0 group-hover:opacity-100 transition-opacity duration-300"
             ></span>
-            <span class="relative flex items-center space-x-3">
+            <a href="/pages/nosotros/index.html" class="relative flex items-center space-x-3">
               <span>Conocé nuestra historia</span>
               <svg
                 class="w-6 h-6 transition-transform duration-300 group-hover:translate-x-1"
@@ -501,7 +501,7 @@
       </div>
     </section>
 
-    <main>
+    <main class="mx-auto">
       <!-- Centro de Actividades Dinámico -->
       <section class="py-20">
         <div class="container mx-auto px-6">
@@ -626,6 +626,7 @@
             var(--cvt-gris-claro) 0%,
             var(--cvt-azul-cielo) 100%
           );
+          width: 100vw;
         "
       >
         <div class="container mx-auto px-6">
@@ -1103,6 +1104,7 @@
       src="https://cdn.jsdelivr.net/npm/@tailwindplus/elements@1"
       type="module"
     ></script>
+    <script src="js/centro-actividades.js"></script>
     <script src="js/main.js"></script>
   </body>
 </html>
